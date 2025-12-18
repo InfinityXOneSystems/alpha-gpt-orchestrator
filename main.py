@@ -1,86 +1,35 @@
-"""
-Alpha GPT Orchestrator
-AUTHORITATIVE RUNTIME ENTRYPOINT
+﻿import os
+from fastapi import FastAPI, Request
 
-RULE:
-- Nothing runs unless invoked here
-- No new features
-- Wiring existing subsystems only
-"""
+app = FastAPI(title="Infinity XOS Orchestrator")
 
-import threading
-import time
-import sys
+ROLE = os.getenv("ROLE", "LEADER")
 
-# ---- BOOTSTRAP (existing code) ----
-try:
-    import universal_bootstrap
-except Exception as e:
-    print("❌ Failed to load universal_bootstrap:", e)
-    sys.exit(1)
+@app.get("/health")
+def health():
+    return {"status": "ok", "role": ROLE}
 
-# ---- SCHEDULER (existing code) ----
-try:
-    from scheduler.loop import SchedulerLoop
-except Exception:
-    SchedulerLoop = None
+@app.get("/role")
+def role():
+    return {"role": ROLE}
 
-# ---- CRAWLER (existing code) ----
-try:
-    from crawler.universal.crawler import UniversalCrawler
-except Exception:
-    UniversalCrawler = None
+@app.post("/telemetry")
+async def telemetry(payload: dict):
+    return {"accepted": True}
 
-# ---- FASTAPI APP (existing) ----
-try:
-    from app import app
-except Exception:
-    app = None
+@app.post("/rehydrate")
+async def rehydrate(payload: dict):
+    return {
+        "rehydrated": True,
+        "state_keys": list(payload.keys())
+    }
 
+if __name__ == "__main__":
+    import uvicorn
+    uvicorn.run(
+        "main:app",
+        host="0.0.0.0",
+        port=int(os.environ.get("PORT", 8080))
+    )
 
-def bootstrap_system():
-    print("🚀 [MAIN] Bootstrapping system")
-
-    # 1. Universal bootstrap (existing)
-    if hasattr(universal_bootstrap, "bootstrap"):
-        print("📘 [MAIN] Running universal bootstrap")
-        universal_bootstrap.bootstrap()
-    else:
-        print("⚠️ [MAIN] No bootstrap() found, skipping")
-
-    # 2. Initialize scheduler (DO NOT START YET)
-    scheduler = None
-    if SchedulerLoop:
-        print("🗓️ [MAIN] Initializing scheduler")
-        scheduler = SchedulerLoop()
-    else:
-        print("⚠️ [MAIN] Scheduler not available")
-
-    # 3. Initialize crawler (DO NOT RUN YET)
-    crawler = None
-    if UniversalCrawler:
-        print("🕷️ [MAIN] Initializing universal crawler")
-        crawler = UniversalCrawler()
-    else:
-        print("⚠️ [MAIN] Universal crawler not available")
-
-    print("✅ [MAIN] Wiring complete (no execution started)")
-    return scheduler, crawler
-
-
-def runtime_loop():
-    print("🧠 [MAIN] Runtime loop active (idle MVP mode)")
-    while True:
-        time.sleep(30)
-        print("⏱️ [MAIN] System alive")
-
-
-# ---- STARTUP ----
-scheduler, crawler = bootstrap_system()
-
-from ai.echo import EchoExecutive
-from control.gpt_control import GPTControlModule
-
-echo = EchoExecutive(GPTControlModule())
-
-echo.report('Executive AI online')
+from services.orchestrator.guardian_middleware import guardian_middleware

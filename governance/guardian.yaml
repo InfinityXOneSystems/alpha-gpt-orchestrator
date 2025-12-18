@@ -1,0 +1,11 @@
+guardian:
+  authority: absolute
+  bypass: false
+  scope:
+    - api
+    - agents
+    - memory
+    - automation
+  peers:
+    - echo
+    - orchestrator
