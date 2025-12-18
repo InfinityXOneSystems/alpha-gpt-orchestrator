@@ -1,0 +1,36 @@
+system:
+  name: InfinityX Autonomous Orchestrator
+  mode: autonomous
+  environment: production
+
+autonomy:
+  enabled: true
+  gpt_control: true
+  allow_code_edit: true
+  allow_infra_ops: true
+
+permissions:
+  github:
+    repos: true
+    issues: true
+    pull_requests: true
+    workflows: true
+  google_cloud:
+    cloud_run: true
+    firestore: true
+    storage: true
+    billing: true
+    k8s: true
+  workspace:
+    gmail: true
+    calendar: true
+    tasks: true
+    drive: true
+    docs: true
+    sheets: true
+    app_script: true
+
+safety:
+  audit_all_actions: true
+  rollback_enabled: true
+  require_manifest: true

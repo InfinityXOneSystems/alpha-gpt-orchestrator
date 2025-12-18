@@ -1,0 +1,16 @@
+﻿import threading
+import uvicorn
+from scheduler.parallel import start
+
+def api():
+    from control.api import app
+    uvicorn.run(app, host='0.0.0.0', port=8080)
+
+if __name__ == '__main__':
+    print('[BOOT] Infinity XOS — FULL PARALLEL MODE')
+    threading.Thread(target=api, daemon=True).start(); from scheduler.parallel_crypto import start_parallel_crypto; start_parallel_crypto()
+    start(); from scheduler.parallel_crypto import start_parallel_crypto; start_parallel_crypto()
+
+
+from scheduler.elastic_loop import run_elastic_loop
+run_elastic_loop()

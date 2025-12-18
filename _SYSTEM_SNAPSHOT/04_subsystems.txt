@@ -1,0 +1,15 @@
+✅ vision PRESENT
+✅ vision_cortex PRESENT
+✅ predictor PRESENT
+✅ autobuilder PRESENT
+✅ crawler PRESENT
+✅ memory PRESENT
+✅ registry PRESENT
+✅ scheduler PRESENT
+❌ gateway MISSING
+✅ api PRESENT
+✅ crypto PRESENT
+✅ blockchain PRESENT
+✅ pubsub PRESENT
+✅ mcp PRESENT
+✅ runbooks PRESENT

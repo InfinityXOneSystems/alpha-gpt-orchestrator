@@ -1,0 +1,10 @@
+
+FullName
+--------
+C:\AI\repos\alpha-gpt-orchestrator\predictor\anomaly_agent.py
+C:\AI\repos\alpha-gpt-orchestrator\predictor\market.py
+C:\AI\repos\alpha-gpt-orchestrator\predictor\scenario_agent.py
+C:\AI\repos\alpha-gpt-orchestrator\predictor\signal_agent.py
+C:\AI\repos\alpha-gpt-orchestrator\predictor\skeptic_agent.py
+C:\AI\repos\alpha-gpt-orchestrator\predictor\trend_agent.py
+

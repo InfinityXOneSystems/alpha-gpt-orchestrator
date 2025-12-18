@@ -1,0 +1,15 @@
+﻿{
+  \"name\": \"alpha-gpt-orchestrator-mcp\",
+  \"tools\": [
+    {\"name\":\"vscode.openFile\",\"description\":\"Open file in VS Code\"},
+    {\"name\":\"vscode.applyPatch\",\"description\":\"Apply code patch\"},
+
+    {\"name\":\"github.read\",\"description\":\"Read repository content\"},
+    {\"name\":\"github.write\",\"description\":\"Write commits / PRs\"},
+    {\"name\":\"github.issue\",\"description\":\"Manage issues\"},
+
+    {\"name\":\"google.run\",\"description\":\"Invoke Cloud Run\"},
+    {\"name\":\"google.firestore\",\"description\":\"Query Firestore\"},
+    {\"name\":\"google.storage\",\"description\":\"Access GCS buckets\"}
+  ]
+}

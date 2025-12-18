@@ -1,0 +1,40 @@
+plugin:
+  id: autonomy_core
+  name: Autonomous Control Core
+
+capabilities:
+  gpt:
+    - code_edit
+    - infra_ops
+    - replication
+    - agent_spawn
+  observability:
+    - logs
+    - metrics
+    - billing
+  workspace:
+    - email_read
+    - email_send
+    - calendar_rw
+    - tasks_rw
+  cloud:
+    - deploy
+    - restart
+    - scale
+    - backup
+
+ui:
+  admin:
+    toggles:
+      - autonomy_enabled
+      - allow_code_edit
+      - allow_replication
+    dropdowns:
+      - execution_mode
+    search:
+      - target_system
+  user:
+    toggles:
+      - automation_enabled
+    search:
+      - lead_criteria

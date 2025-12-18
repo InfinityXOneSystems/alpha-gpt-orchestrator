@@ -1,0 +1,5 @@
+﻿autonomy:
+  enabled: true
+  governance_required: true
+  calendar_required: true
+  tasks_required: true

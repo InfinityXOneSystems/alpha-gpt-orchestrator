@@ -1,0 +1,9 @@
+﻿name: Orchestrator Callback
+on: [push]
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Notify Orchestrator
+        run: |
+          curl -X POST https://orchestrator-896380409704.us-east1.run.app/task-complete

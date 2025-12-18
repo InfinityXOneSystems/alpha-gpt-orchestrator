@@ -1,0 +1,10 @@
+﻿hostinger:
+  enabled: true
+  role: frontend_hosting
+  capabilities:
+    - horizons_ai
+    - pwa_builder
+    - domain_management
+  authority: governed
+  failure_mode: degrade_gracefully
+  alert_target: orchestrator

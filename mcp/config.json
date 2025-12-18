@@ -1,0 +1,8 @@
+﻿{
+  \"mcp_version\": \"1.0\",
+  \"channels\": {
+    \"vscode\": {\"enabled\": true},
+    \"github\": {\"enabled\": true},
+    \"google\": {\"enabled\": true}
+  }
+}

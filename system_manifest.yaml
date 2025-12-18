@@ -1,0 +1,30 @@
+system:
+  name: alpha-gpt-orchestrator
+  mode: autonomous
+  environment: production
+
+autonomy:
+  enabled: true
+  auto_start: true
+  auto_heal: true
+  auto_fix: true
+
+predictor:
+  no_regret_mode: true
+  regret_threshold: 0.15
+  ensemble_enabled: true
+
+crawler:
+  enabled: true
+  interval_seconds: 60
+
+governance:
+  enabled: true
+  emergency_stop: true
+
+resources:
+  max_jobs_per_hour: 100
+
+observability:
+  metrics: true
+  logs: true

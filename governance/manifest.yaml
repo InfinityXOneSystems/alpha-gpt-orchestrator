@@ -1,0 +1,20 @@
+﻿autonomy:
+  enabled: true
+  requires_calendar: true
+  requires_task: true
+
+execution:
+  max_parallel_agents: 8
+  persistence: always_on
+  memory: firestore_only
+
+authority_order:
+  - manifest
+  - governance
+  - calendar
+  - tasks
+
+prohibitions:
+  - bypass_calendar
+  - bypass_manifest
+  - self_modify_governance

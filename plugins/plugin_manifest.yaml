@@ -1,0 +1,12 @@
+industry: real_estate
+goals:
+  - find off-market deals
+  - predict motivated sellers
+signals:
+  - zoning_changes
+  - tax_delinquency
+  - listing_velocity
+actions:
+  - build_scraper
+  - generate_leads
+  - notify_client

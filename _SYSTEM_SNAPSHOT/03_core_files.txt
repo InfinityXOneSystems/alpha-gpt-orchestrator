@@ -1,0 +1,256 @@
+===== FILE: main.py =====
+"""
+Alpha GPT Orchestrator
+AUTHORITATIVE RUNTIME ENTRYPOINT
+
+RULE:
+- Nothing runs unless invoked here
+- No new features
+- Wiring existing subsystems only
+"""
+
+import threading
+import time
+import sys
+
+# ---- BOOTSTRAP (existing code) ----
+try:
+    import universal_bootstrap
+except Exception as e:
+    print("❌ Failed to load universal_bootstrap:", e)
+    sys.exit(1)
+
+# ---- SCHEDULER (existing code) ----
+try:
+    from scheduler.loop import SchedulerLoop
+except Exception:
+    SchedulerLoop = None
+
+# ---- CRAWLER (existing code) ----
+try:
+    from crawler.universal.crawler import UniversalCrawler
+except Exception:
+    UniversalCrawler = None
+
+# ---- FASTAPI APP (existing) ----
+try:
+    from app import app
+except Exception:
+    app = None
+
+
+def bootstrap_system():
+    print("🚀 [MAIN] Bootstrapping system")
+
+    # 1. Universal bootstrap (existing)
+    if hasattr(universal_bootstrap, "bootstrap"):
+        print("📘 [MAIN] Running universal bootstrap")
+        universal_bootstrap.bootstrap()
+    else:
+        print("⚠️ [MAIN] No bootstrap() found, skipping")
+
+    # 2. Initialize scheduler (DO NOT START YET)
+    scheduler = None
+    if SchedulerLoop:
+        print("🗓️ [MAIN] Initializing scheduler")
+        scheduler = SchedulerLoop()
+    else:
+        print("⚠️ [MAIN] Scheduler not available")
+
+    # 3. Initialize crawler (DO NOT RUN YET)
+    crawler = None
+    if UniversalCrawler:
+        print("🕷️ [MAIN] Initializing universal crawler")
+        crawler = UniversalCrawler()
+    else:
+        print("⚠️ [MAIN] Universal crawler not available")
+
+    print("✅ [MAIN] Wiring complete (no execution started)")
+    return scheduler, crawler
+
+
+def runtime_loop():
+    print("🧠 [MAIN] Runtime loop active (idle MVP mode)")
+    while True:
+        time.sleep(30)
+        print("⏱️ [MAIN] System alive")
+
+
+# ---- STARTUP ----
+scheduler, crawler = bootstrap_system()
+
+threading.Thread(target=runtime_loop, daemon=True).start()
+
+
+===== FILE: app.py =====
+from fastapi import FastAPI
+from fastapi.responses import FileResponse
+from registry.commands import dispatch
+from replication.api.replicate import replicate
+
+app = FastAPI(title='Infinity XOS', version='1.0.0')
+
+@app.post('/execute')
+def execute(cmd:dict):
+    return dispatch(cmd)
+
+@app.post('/replicate')
+def replicate_agent(req:dict):
+    return replicate(req.get('agent'), req.get('count',1))
+
+@app.get('/ui')
+def ui():
+    return FileResponse('frontend/react/index.html')
+
+@app.get('/health')
+def health():
+    return {'status':'ok'}
+
+
+===== FILE: universal_bootstrap.py =====
+import os
+import time
+import traceback
+import importlib.util
+from pathlib import Path
+from concurrent.futures import ThreadPoolExecutor, as_completed
+
+BASE_DIR = Path(__file__).parent.resolve()
+
+AGENT_ROOTS = [
+    "agent","agent_market","analysis","api_agents","autobuilder",
+    "blockchain","cognition","crawler","crypto","debate",
+    "decomposer","executor","finance_agents","llm","planner",
+    "predictor","reflection","scheduler","spawner","tasks",
+    "thoughts","vision","vision_cortex","runbooks","seeds"
+]
+
+IGNORE = {"__init__.py","__pycache__"}
+REGISTRY = {}
+
+def discover():
+    files = []
+    for root in AGENT_ROOTS:
+        p = BASE_DIR / root
+        if not p.exists():
+            continue
+        for f in p.rglob("*.py"):
+            if f.name not in IGNORE:
+                files.append(f)
+    return files
+
+def load(path):
+    name = str(path.relative_to(BASE_DIR)).replace("\\",".").replace("/",".").replace(".py","")
+    try:
+        spec = importlib.util.spec_from_file_location(name, path)
+        mod = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(mod)
+        return name, mod
+    except Exception:
+        print("[LOAD ERROR]", name)
+        traceback.print_exc()
+        return None, None
+
+def register():
+    for p in discover():
+        name, mod = load(p)
+        if not mod:
+            continue
+        for attr in dir(mod):
+            if attr in ("run","start","loop"):
+                fn = getattr(mod, attr)
+                if callable(fn):
+                    REGISTRY[f"{name}.{attr}"] = fn
+    print("[REGISTRY]", len(REGISTRY), "agents registered")
+
+def run_agent(name, fn):
+    print("[AGENT START]", name)
+    try:
+        fn()
+    except Exception:
+        print("[AGENT CRASH]", name)
+        traceback.print_exc()
+
+def launch():
+    workers = max(8, os.cpu_count() * 4)
+    with ThreadPoolExecutor(workers) as pool:
+        futures = {pool.submit(run_agent, n, f): n for n,f in REGISTRY.items()}
+        for f in as_completed(futures):
+            pass
+
+def supervisor():
+    while True:
+        try:
+            register()
+            launch()
+        except Exception:
+            print("[SUPERVISOR ERROR]")
+            traceback.print_exc()
+        time.sleep(10)
+
+if __name__ == "__main__":
+    print("INFINITY XOS — UNIVERSAL PARALLEL AGENT BOOTSTRAP")
+    print("BASE:", BASE_DIR)
+    supervisor()
+
+
+===== FILE: config.py =====
+import os
+
+SERVICE_NAME = "alpha-gpt-orchestrator"
+
+MEMORY_GATEWAY_URL = os.getenv(
+    "MEMORY_GATEWAY_URL",
+    "https://memory-gateway-896380409704.us-east1.run.app"
+)
+
+INTELLIGENCE_DATA_URL = os.getenv(
+    "INTELLIGENCE_DATA_URL",
+    "https://real-estate-intelligence-data-896380409704.us-east1.run.app"
+)
+
+AGENT_SLEEP_SECONDS = int(os.getenv("AGENT_SLEEP_SECONDS", "10"))
+
+
+===== FILE: Dockerfile =====
+FROM python:3.11-slim
+
+WORKDIR /app
+
+COPY . /app
+
+RUN pip install --no-cache-dir -r requirements.txt
+
+EXPOSE 8080
+
+CMD ["python", "main.py"]
+
+
+===== FILE: requirements.txt =====
+fastapi
+uvicorn
+requests
+pydantic
+python-dotenv
+google-cloud-firestore
+google-cloud-storage
+eth-account
+bitcoinlib
+web3
+
+
+===== FILE: supervisord.conf =====
+[supervisord]
+nodaemon=true
+
+[program:api]
+command=uvicorn app:app --host 0.0.0.0 --port 8080
+autorestart=true
+startretries=999
+
+[program:agent]
+command=python scheduler/loop.py
+autorestart=true
+startretries=999
+
+

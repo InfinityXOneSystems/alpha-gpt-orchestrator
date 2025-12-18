@@ -1,0 +1,54 @@
+plugin:
+  id: crawler_advanced
+  name: Advanced Crawling
+  owner_editable: true
+  user_editable: true
+
+permissions:
+  gpt_can:
+    - start
+    - stop
+    - modify_criteria
+  requires_approval:
+    - deep_scrape
+    - auth_pages
+
+criteria:
+  search:
+    enabled: true
+    modes: [url, keyword, industry, sub_industry]
+  url:
+    enabled: true
+  keyword:
+    enabled: true
+    max: 50
+  industry:
+    enabled: true
+    taxonomy: [real_estate, saas, ecommerce, healthcare]
+  geography:
+    enabled: true
+  freshness_days:
+    enabled: true
+    max: 30
+
+ui:
+  admin:
+    components:
+      - type: toggle
+        key: enabled
+        label: Enable Crawler
+      - type: dropdown
+        key: mode
+        options: [url, keyword, industry, sub_industry]
+      - type: search
+        key: query
+      - type: multiselect
+        key: industry
+      - type: slider
+        key: freshness_days
+  user:
+    components:
+      - type: search
+        key: query
+      - type: dropdown
+        key: mode

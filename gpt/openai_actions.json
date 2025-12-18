@@ -1,0 +1,10 @@
+{
+  ""name"": ""InfinityXAI Orchestrator"",
+  ""description"": ""Full autonomous control plane for InfinityX systems"",
+  ""actions"": [
+    {""name"":""execute_command"",""method"":""POST"",""path"":""/gpt/execute""},
+    {""name"":""list_plugins"",""method"":""GET"",""path"":""/admin/plugins""},
+    {""name"":""edit_code"",""method"":""POST"",""path"":""/admin/code/edit""},
+    {""name"":""observe_system"",""method"":""GET"",""path"":""/admin/observability""}
+  ]
+}

@@ -1,0 +1,246 @@
+Folder PATH listing for volume OS
+Volume serial number is 4255-EF64
+C:.
+¦   app.py
+¦   config.py
+¦   Dockerfile
+¦   main.py
+¦   main.py.bak
+¦   requirements.txt
+¦   supervisord.conf
+¦   universal_bootstrap.py
+¦   
++---agent
+¦       alpha_omega.py
+¦       executor.py
+¦       planner.py
+¦       state.py
+¦       
++---agent_market
+¦       agent.py
+¦       blockchain_listener.py
+¦       market_simulator.py
+¦       spawner.py
+¦       
++---analysis
+¦       analyze.py
+¦       analyzer.py
+¦       signals.py
+¦       
++---api
+¦   ¦   router.py
+¦   ¦   
+¦   +---contracts
+¦   ¦       router.py
+¦   ¦       
+¦   +---dashboard
+¦           router.py
+¦           
++---api_agents
+¦       router.py
+¦       
++---autobuilder
+¦       builder.py
+¦       
++---blockchain
+¦   +---chain
+¦   ¦       builder.py
+¦   ¦       
+¦   +---compiler
+¦   ¦       compiler.py
+¦   ¦       
+¦   +---contracts
+¦   ¦   ¦   AIReplicationRegistry.sol
+¦   ¦   ¦   generator.py
+¦   ¦   ¦   
+¦   ¦   +---deployer
+¦   ¦   ¦       deploy.py
+¦   ¦   ¦       
+¦   ¦   +---templates
+¦   ¦           AgentRevenue.sol
+¦   ¦           DAOApproval.sol
+¦   ¦           escrow.sol
+¦   ¦           RealEstateEscrow.sol
+¦   ¦           
+¦   +---dao
+¦   ¦       controller.py
+¦   ¦       
+¦   +---replication
+¦   ¦       replicator.py
+¦   ¦       
+¦   +---wallets
+¦   ¦       replicator.py
+¦   ¦       shadow_wallet.py
+¦   ¦       
+¦   +---watcher
+¦           replication_watcher.py
+¦           
++---cognition
+¦   +---analysis
+¦   ¦       governor.py
+¦   ¦       
+¦   +---bus
+¦   ¦       bus.py
+¦   ¦       
+¦   +---execution
+¦   ¦       executor.py
+¦   ¦       
+¦   +---llm
+¦   ¦       router.py
+¦   ¦       
+¦   +---spawn
+¦   ¦       spawner.py
+¦   ¦       
+¦   +---vision
+¦           debate.py
+¦           documentor.py
+¦           predictor.py
+¦           strategist.py
+¦           validator.py
+¦           
++---comms
+¦   +---email
+¦   ¦       agent.py
+¦   ¦       
+¦   +---phone
+¦           agent.py
+¦           
++---control
+¦       api.py
+¦       kill_switch.py
+¦       openapi.json
+¦       policy_engine.py
+¦       state_machine.py
+¦       
++---crawler
+¦   ¦   crawl.py
+¦   ¦   crawler.py
+¦   ¦   headless.py
+¦   ¦   
+¦   +---universal
+¦           crawler.py
+¦           
++---crypto
+¦       bitcoin_wallet.py
+¦       ethereum_wallet.py
+¦       watcher.py
+¦       
++---debate
+¦       arena.py
+¦       
++---decomposer
+¦       decompose.py
+¦       
++---executor
+¦       execute.py
+¦       executor.py
+¦       
++---finance_agents
+¦       arbitrage.py
+¦       market_predictor.py
+¦       risk_engine.py
+¦       
++---frontend
+¦   ¦   dashboard.py
+¦   ¦   
+¦   +---react
+¦           index.html
+¦           
++---governance
+¦       rules.py
+¦       
++---ledger
+¦       chain_ledger.py
+¦       
++---llm
+¦       router.py
+¦       
++---mcp
+¦       bridge.py
+¦       config.json
+¦       github.py
+¦       google.py
+¦       manifest.json
+¦       vscode.py
+¦       
++---memory
+¦       client.py
+¦       
++---planner
+¦       recursive.py
+¦       
++---predictor
+¦       anomaly_agent.py
+¦       market.py
+¦       scenario_agent.py
+¦       signal_agent.py
+¦       skeptic_agent.py
+¦       trend_agent.py
+¦       
++---pubsub
+¦       bus.py
+¦       
++---reflection
+¦       reflect.py
+¦       
++---registry
+¦       commands.py
+¦       services.py
+¦       
++---replication
+¦   +---api
+¦           replicate.py
+¦           
++---revenue
+¦       engine.py
+¦       
++---runbooks
+¦       executor.py
+¦       
++---scheduler
+¦       elastic_loop.py
+¦       loop.py
+¦       parallel.py
+¦       parallel_crypto.py
+¦       
++---seeds
+¦       loader.py
+¦       
++---spawner
+¦       spawn.py
+¦       
++---storage
+¦       router.py
+¦       
++---tasks
+¦       generator.py
+¦       
++---thoughts
+¦       graph.py
+¦       
++---validation
+¦       autofix.py
+¦       heal.py
+¦       validate.py
+¦       
++---vision
+¦       cortex.py
+¦       documentor.py
+¦       predictor.py
+¦       strategist.py
+¦       validator.py
+¦       
++---vision_cortex
+¦       controller.py
+¦       cortex.py
+¦       documentor.py
+¦       predictor.py
+¦       strategist.py
+¦       validator.py
+¦       
++---workspace
+¦       sync.py
+¦       
++---_SYSTEM_SNAPSHOT
+        01_tree.txt
+        

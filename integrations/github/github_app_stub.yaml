@@ -1,0 +1,11 @@
+github_app:
+  name: InfinityXAI Orchestrator
+  app_url: https://infinityxai.com
+  callback_url: https://admin.infinityxai.com/github/callback
+  webhook_url: https://admin.infinityxai.com/github/webhook
+  permissions:
+    contents: write
+    issues: write
+    pull_requests: write
+    workflows: write
+    metadata: read

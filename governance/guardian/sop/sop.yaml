@@ -1,0 +1,4 @@
+﻿required_checks:
+  - calendar_approved
+  - task_exists
+  - governance_passed

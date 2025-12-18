@@ -1,0 +1,23 @@
+﻿name: Infinity XOS Autonomous Sync
+
+on:
+  schedule:
+    - cron: "*/15 * * * *"
+  push:
+  workflow_dispatch:
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: google-github-actions/auth@v2
+        with:
+          credentials_json: ${{ secrets.GCP_SA_KEY }}
+
+      - run: |
+          gsutil -m rsync -r gs://infinityx-memory/memory-gateway memory-gateway
+          git add memory-gateway
+          git commit -m "autonomous memory sync" || echo "No changes"
+          git push

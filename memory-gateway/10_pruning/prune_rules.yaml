@@ -1,0 +1,3 @@
+pruning:
+ policy: summarize_then_archive
+ never_delete: true
