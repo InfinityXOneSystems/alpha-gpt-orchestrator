@@ -1,0 +1,3 @@
+﻿[submodule "secrets"]
+  path = secrets
+  url = https://example.com/INTERNAL-SECRETS-REPO.git
