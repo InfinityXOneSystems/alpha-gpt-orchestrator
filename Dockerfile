@@ -2,11 +2,10 @@
 
 WORKDIR /app
 
-COPY . /app
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
 
-RUN pip install --retries 10 --timeout 120 --upgrade pip && pip install --retries 10 --timeout 120 --no-cache-dir -r requirements.txt
+COPY . .
 
 EXPOSE 8080
-
 CMD ["python", "main.py"]
-
