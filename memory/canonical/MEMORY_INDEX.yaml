@@ -1,0 +1,13 @@
+﻿memory_index:
+  boot:
+    - memory/boot/FAMILY_GPT_MASTER_INVOCATION.md
+    - memory/boot/BOOT_MEMORY_PAYLOAD.json
+  governance:
+    - governance/policies/guardian.policy.yaml
+    - governance/contracts/echo.contract.yaml
+  shared:
+    - memory/shared/FAMILY_GPT_REGISTRY.yaml
+  telemetry:
+    - memory/telemetry
+  snapshots:
+    - memory/snapshots

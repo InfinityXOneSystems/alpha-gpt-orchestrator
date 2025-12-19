@@ -1,0 +1,22 @@
+﻿guardian:
+  authority: absolute
+  bypass: false
+  echo_override: false
+
+requirements:
+  boot_prompt_required: true
+  memory_required: true
+  telemetry_required: true
+
+permissions:
+  read:
+    health: allow
+    telemetry: allow
+    memory: allow
+  write:
+    telemetry: allow
+    memory: guardian_approved
+  execute:
+    agents: guardian_approved
+    cloud: guardian_approved
+    git: guardian_approved

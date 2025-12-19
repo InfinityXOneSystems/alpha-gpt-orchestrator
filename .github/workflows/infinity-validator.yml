@@ -1,0 +1,15 @@
+﻿name: Infinity Platform Validator
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run Infinity Validator
+        shell: pwsh
+        run: |
+          ./platform-validator.ps1 -Mode validate

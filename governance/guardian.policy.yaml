@@ -1,0 +1,22 @@
+﻿guardian:
+  authority: absolute
+  bypass: false
+  echo_override: false
+
+requirements:
+  calendar_required: true
+  task_required: true
+  manifest_required: true
+
+permissions:
+  read:
+    health: allow
+    role: allow
+    telemetry: allow
+  write:
+    telemetry: allow
+    rehydrate: allow
+  execute:
+    git: guardian_approved
+    cloud: guardian_approved
+    workspace: guardian_approved

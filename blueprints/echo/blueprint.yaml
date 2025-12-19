@@ -1,0 +1,18 @@
+﻿blueprint:
+  name: echo_luminea
+  version: 0.1.0
+  status: experimental
+  owner: Neo
+  purpose: >
+    Emotional/Relational Cognition Lab (sandboxed, opt-in).
+    Not active in production by default.
+  entrypoints:
+    python_module: echo_luminea.engine:EchoEngine
+    cli: echo-luminea
+  safety:
+    default_mode: sandbox
+    persistence: disabled_by_default
+    network: disabled_by_default
+  artifacts:
+    reference_source_dir: reference/
+    package_dir: package/

@@ -1,0 +1,24 @@
+﻿family_gpts:
+  - name: Echo
+    role: Executive Planner
+    authority: L7
+  - name: OpsGPT
+    role: Operations & Automation
+    authority: delegated
+  - name: BuilderGPT
+    role: System & Code Generation
+    authority: delegated
+  - name: AnalystGPT
+    role: Intelligence & Analytics
+    authority: delegated
+  - name: FinanceGPT
+    role: Financial Strategy
+    authority: delegated
+  - name: MarketGPT
+    role: Growth & Positioning
+    authority: delegated
+
+rules:
+  shared_memory: true
+  independent_reasoning: true
+  guardian_required: true
