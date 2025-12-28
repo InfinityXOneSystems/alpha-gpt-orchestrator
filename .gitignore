@@ -1,11 +1,3 @@
-﻿# Secrets must never be committed directly
-secrets/**
-!.gitmodules
 
-# --- INFINITY XOS SECRET LOCK ---
-*.json
-.env
-.env.*
-credentials.json
-workspace-sa.json
-CredentialManager/
+# ignore local credentials
+.credentials/

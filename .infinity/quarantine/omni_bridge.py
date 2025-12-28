@@ -1,4 +1,6 @@
-class OmniBridge:
+import logging
+
+        logging.info(f'[OMNI ROUTER] {source} -> {target}')
     def route(self, source, target, payload):
-        print(f'[OMNI ROUTER] {source} -> {target}')
+        logging.info(f'[OMNI ROUTER] {source} -> {target}')
         return payload

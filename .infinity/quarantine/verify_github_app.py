@@ -1,3 +1,5 @@
+import logging
+
 #!/usr/bin/env python3
 """
 GitHub App verification script
@@ -101,13 +103,13 @@ def create_branch_and_pr(token: str, repo: str, branch: str, file_path: str) -> 
     return r.json()
 
 
-def main() -> None:
+    logging.info("Created JWT. Exchanging for installation token...")
     jwt_token = create_jwt(GITHUB_APP_ID, PRIVATE_KEY_PATH)
-    print("Created JWT. Exchanging for installation token...")
+    logging.info("Created JWT. Exchanging for installation token...")
     token = create_installation_token(jwt_token, INSTALLATION_ID)
-    print("Got installation token; creating branch & PR...")
+    logging.info("Got installation token; creating branch & PR...")
     pr = create_branch_and_pr(token, REPO, BRANCH_NAME, COMMIT_FILE_PATH)
-    print("PR created:", pr.get("html_url"))
+    logging.info("PR created:", pr.get("html_url"))
 
 
 if __name__ == "__main__":
@@ -116,8 +118,8 @@ if __name__ == "__main__":
         if not os.getenv(k):
             missing.append(k)
     if missing:
-        print("Missing env vars:", missing)
-        print(
+        logging.info("Missing env vars:", missing)
+        logging.info(
             "Set GITHUB_APP_ID, GITHUB_APP_PRIVATE_KEY_PATH, GITHUB_APP_INSTALLATION_ID, and optionally GITHUB_TEST_REPO",
         )
         raise SystemExit(1)

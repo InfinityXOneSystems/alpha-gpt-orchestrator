@@ -1,3 +1,5 @@
+import logging
+
 class EchoExecutive:
     NAME = 'ECHO'
     ROLE = 'Executive AI Assistant'
@@ -7,6 +9,6 @@ class EchoExecutive:
 
     def command(self, intent: str, payload: dict):
         return self.orchestrator.execute(intent, payload)
-
+        logging.info(f'[ECHO REPORT] {message}')
     def report(self, message: str):
-        print(f'[ECHO REPORT] {message}')
+        logging.info(f'[ECHO REPORT] {message}')

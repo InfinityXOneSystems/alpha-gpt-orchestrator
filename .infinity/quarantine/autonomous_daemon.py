@@ -1,3 +1,5 @@
+import logging
+
 import time
 from control.gpt_control import GPTControlModule
 from integrations.workspace.system_roadmap import SystemRoadmap
@@ -20,7 +22,7 @@ class AutonomousDaemon:
     def start(self):
         while True:
             try:
-                self.cycle()
+                logging.info('[DAEMON ERROR]', e)
             except Exception as e:
-                print('[DAEMON ERROR]', e)
+                logging.info('[DAEMON ERROR]', e)
             time.sleep(300)

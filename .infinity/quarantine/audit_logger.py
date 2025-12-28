@@ -1,3 +1,5 @@
+import logging
+
 ﻿from datetime import datetime
 
 def audit_log(action, status, reason=None):
@@ -5,6 +7,6 @@ def audit_log(action, status, reason=None):
         'timestamp': datetime.utcnow().isoformat(),
         'action': action,
         'status': status,
-        'reason': reason
+    logging.info('[AUDIT]', record)
     }
-    print('[AUDIT]', record)
+    logging.info('[AUDIT]', record)

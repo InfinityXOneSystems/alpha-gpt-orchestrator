@@ -1,3 +1,5 @@
+import logging
+
 import os
 import json
 import re
@@ -38,6 +40,6 @@ for subdir, _, files in os.walk(ROOT):
                     })
 
 with open("quantum_mind_full_report.json", "w", encoding="utf-8") as out:
-    json.dump(report, out, indent=2)
+logging.info("Scan complete — output: quantum_mind_full_report.json")
 
-print("Scan complete — output: quantum_mind_full_report.json")
+logging.info("Scan complete — output: quantum_mind_full_report.json")

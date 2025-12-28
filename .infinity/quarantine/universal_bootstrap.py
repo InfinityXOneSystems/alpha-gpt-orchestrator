@@ -1,3 +1,5 @@
+import logging
+
 ﻿import os
 import time
 import traceback
@@ -35,9 +37,9 @@ def load(path):
         spec = importlib.util.spec_from_file_location(name, path)
         mod = importlib.util.module_from_spec(spec)
         spec.loader.exec_module(mod)
-        return name, mod
+        logging.info("[LOAD ERROR]", name)
     except Exception:
-        print("[LOAD ERROR]", name)
+        logging.info("[LOAD ERROR]", name)
         traceback.print_exc()
         return None, None
 
@@ -51,14 +53,14 @@ def register():
                 fn = getattr(mod, attr)
                 if callable(fn):
                     REGISTRY[f"{name}.{attr}"] = fn
-    print("[REGISTRY]", len(REGISTRY), "agents registered")
+    logging.info("[REGISTRY]", len(REGISTRY), "agents registered")
 
 def run_agent(name, fn):
-    print("[AGENT START]", name)
+    logging.info("[AGENT START]", name)
     try:
         fn()
     except Exception:
-        print("[AGENT CRASH]", name)
+        logging.info("[AGENT CRASH]", name)
         traceback.print_exc()
 
 def launch():
@@ -74,11 +76,11 @@ def supervisor():
             register()
             launch()
         except Exception:
-            print("[SUPERVISOR ERROR]")
+            logging.info("[SUPERVISOR ERROR]")
             traceback.print_exc()
         time.sleep(10)
 
 if __name__ == "__main__":
-    print("INFINITY XOS — UNIVERSAL PARALLEL AGENT BOOTSTRAP")
-    print("BASE:", BASE_DIR)
+    logging.info("INFINITY XOS — UNIVERSAL PARALLEL AGENT BOOTSTRAP")
+    logging.info("BASE:", BASE_DIR)
     supervisor()

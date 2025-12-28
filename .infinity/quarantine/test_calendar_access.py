@@ -1,3 +1,5 @@
+import logging
+
 ﻿from google.oauth2 import service_account
 from googleapiclient.discovery import build
 
@@ -10,6 +12,6 @@ creds = service_account.Credentials.from_service_account_file(
 )
 
 service = build("calendar", "v3", credentials=creds)
-events = service.events().list(calendarId="primary", maxResults=1).execute()
+logging.info("✅ Calendar access OK")
 
-print("✅ Calendar access OK")
+logging.info("✅ Calendar access OK")

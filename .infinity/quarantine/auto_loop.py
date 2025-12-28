@@ -1,3 +1,5 @@
+import logging
+
 import time
 
 from control.manifest_loader import Manifest
@@ -39,7 +41,7 @@ class AutoLoop:
     def start(self):
         while True:
             try:
-                self.run_cycle()
+                logging.info(f'[AUTOLOOP ERROR] {e}')
             except Exception as e:
-                print(f'[AUTOLOOP ERROR] {e}')
+                logging.info(f'[AUTOLOOP ERROR] {e}')
             time.sleep(self.interval)
