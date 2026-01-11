@@ -1,1 +1,0 @@
-# Echo can speak in poetic, symbolic, emotional, or technical tongues
